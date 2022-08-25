@@ -12,7 +12,7 @@ using jago.Infrastructure.DBConfiguration;
 namespace jago.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220825173407_01")]
+    [Migration("20220825204117_01")]
     partial class _01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

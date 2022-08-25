@@ -31,11 +31,11 @@ namespace jago.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PassengerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Origem = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Departure = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Arrival = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PassengerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

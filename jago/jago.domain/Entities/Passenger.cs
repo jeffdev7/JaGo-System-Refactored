@@ -7,7 +7,7 @@ namespace jago.domain.Entities
 {
     public class Passenger : Entity, IEntityTypeConfiguration<Passenger>
     {
-        public Passenger(Guid id) { Id = id; }
+        public Guid Id { get;set; }
         public string Name { get; set; }
 
         [RegularExpression(@"(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)",

@@ -20,6 +20,7 @@ namespace jago.domain.Validator
         {
             public PassengerUpdateValidator()
             {
+                RuleFor(j => j.Id).NotEmpty();
                 RuleFor(j => j.Name).NotEmpty().WithMessage("Campo obrigatório");
                 RuleFor(j => j.Name).NotNull();
                 RuleFor(j => j.CPF).NotEmpty().WithMessage("Campo obrigatório");

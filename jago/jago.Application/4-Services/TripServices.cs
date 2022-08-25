@@ -7,7 +7,6 @@ using jago.domain.Interfaces.Repositories;
 using jago.domain.Model;
 using jago.domain.Validator;
 using Microsoft.EntityFrameworkCore;
-using static jago.domain.Validator.TripValidator;
 
 namespace jago.Application.Services
 {
@@ -16,10 +15,10 @@ namespace jago.Application.Services
         private readonly IMapper _mapper;
         private readonly ITripRepository _tripRepository;
 
-        public TripServices(IMapper mapper, ITripRepository TripRepository)
+        public TripServices(IMapper mapper, ITripRepository tripRepository)
         {
             _mapper = mapper;
-            _tripRepository = TripRepository;
+            _tripRepository = tripRepository;
         }
         public IEnumerable<TripViewModel> GetAll()
         {
@@ -69,9 +68,9 @@ namespace jago.Application.Services
         public ValidationResult Add(TripViewModel vm)
         {
             var entity = _mapper.Map<Trip>(vm);
-            var validationResult = new TripValidator().Validate(entity);
-            if (validationResult.IsValid)
-                _tripRepository.Add(entity);
+            var validationResult = new TripAddValidator().Validate(entity);
+            if (!validationResult.IsValid)
+               _tripRepository.Add(entity);
 
             return validationResult;
         }
@@ -101,13 +100,14 @@ namespace jago.Application.Services
 
             return validationResult;
         }
-        IEnumerable<PassengerViewModel> ITripServices.GetPax()
-        {
-            throw new NotImplementedException();
-        }
         public IEnumerable<PaxListModel> GetPaxList()
         {
             return _tripRepository.GetPaxList();
+        }
+
+        IEnumerable<PassengerViewModel> ITripServices.GetPax()
+        {
+            return _mapper.Map<IEnumerable<PassengerViewModel>>(_tripRepository.GetPax());
         }
     }
 

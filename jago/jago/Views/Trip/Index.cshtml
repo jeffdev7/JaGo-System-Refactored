@@ -24,6 +24,9 @@
         <script src="https://kit.fontawesome.com/ca515fdac4.js" crossorigin="anonymous"></script>
         <tr>
             <th>
+                Passenger
+            </th>
+            <th>
                 Origem
             </th>
             <th>
@@ -35,15 +38,16 @@
             <th>
                 Arrival
             </th>
-            <th>
-                Passenger
-            </th>
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @item.PaxName
+            </td>
             <td>
                 @item.Origem
             </td>
@@ -55,10 +59,7 @@
             </td>
             <td>
                 @item.Arrival
-            </td>
-            <td>
-                @item.PaxName
-            </td>
+            </td>     
             <td>
                 <a asp-action="Edit" class="btn btn-light" asp-route-id="@item.Id"><i class="far fa-edit"></i></a> |
                 <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> |

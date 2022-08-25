@@ -6,23 +6,23 @@ namespace jago.domain.Entities
 {
     public class Trip : Entity, IEntityTypeConfiguration<Trip>
     {
-        public Trip(Guid id) { Id = id; }
+        public Guid Id { get;set; }
+        public virtual Passenger Passenger { get; set; }
+        public Guid PassengerId { get; set; }
         public string Origem { get; set; }
         public string Destino { get; set; }
         public DateTime Departure { get; set; }
         public DateTime Arrival { get; set; }
-        public virtual Passenger Passenger { get; set; }
-        public Guid PassengerId { get; set; }
         public Trip() { }
 
-        public Trip(string origem, string destino, DateTime departure,
-            DateTime arrival, Guid passengerId)
+        public Trip(Guid passengerId, string origem, string destino, 
+            DateTime departure, DateTime arrival)
         {
+            PassengerId = passengerId;
             Origem = origem;
             Destino = destino;
             Departure = departure;
             Arrival = arrival;
-            PassengerId = passengerId;
         }
         public void Configure(EntityTypeBuilder<Trip> builder)
         {
@@ -31,6 +31,7 @@ namespace jago.domain.Entities
             builder.Property(j => j.Origem).IsRequired();
             builder.Property(j => j.Destino).IsRequired();
             builder.Property(j => j.Departure).IsRequired();
+            builder.Property(j => j.Arrival).IsRequired();
         }
     }
 }
