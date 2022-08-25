@@ -1,7 +1,28 @@
+using jago.Application.AutoMapper;
+using jago.Application.Interfaces.Services;
+using jago.Application.Services;
+using jago.domain.Interfaces.Repositories;
+using jago.Infrastructure.DBConfiguration;
+using jago.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationContext>(options => 
+                 options.UseSqlServer(connection));
+builder.Services.AddAutoMapper(typeof(DomainViewModelMapping), typeof(ViewModelDomainMapping));
+
+builder.Services.AddDbContext<ApplicationContext>();
+
+//IoC
+    builder.Services.AddScoped<IPassengerServices, PassengerServices>();
+    builder.Services.AddScoped<ITripServices, TripServices>();
+    builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
+    builder.Services.AddScoped<ITripRepository, TripRepository>();
 
 var app = builder.Build();
 
