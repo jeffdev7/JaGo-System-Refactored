@@ -17,6 +17,7 @@ namespace jago.Infrastructure.DBConfiguration
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationContext>(options => 
-                 options.UseSqlServer(connection));
+                 options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 29))));
 builder.Services.AddAutoMapper(typeof(DomainViewModelMapping), typeof(ViewModelDomainMapping));
 
 builder.Services.AddDbContext<ApplicationContext>();

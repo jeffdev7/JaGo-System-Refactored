@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\jago.domain\jago.domain.csproj" />
+    <ProjectReference Include="..\jago.Infrastructure\jago.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

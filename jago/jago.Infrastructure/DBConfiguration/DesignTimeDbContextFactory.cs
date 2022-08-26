@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jago.Infrastructure.DBConfiguration
 {
@@ -19,7 +14,7 @@ namespace jago.Infrastructure.DBConfiguration
                .Build();
             var builder = new DbContextOptionsBuilder<ApplicationContext>();
             var conn = config.GetConnectionString("DefaultConnection");
-            builder.UseSqlServer(conn);
+            builder.UseMySql(conn, new MySqlServerVersion(new Version(8, 0, 29)));
             return new ApplicationContext(builder.Options);
         }
     }

@@ -1,14 +1,17 @@
 ﻿using jago.domain.Entities.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace jago.domain.Entities
 {
     public class Trip : Entity, IEntityTypeConfiguration<Trip>
     {
         public Guid Id { get;set; }
-        public virtual Passenger Passenger { get; set; }
+        
+        [ForeignKey("Passenger")]
         public Guid PassengerId { get; set; }
+        public virtual Passenger Passenger { get; set; }
         public string Origem { get; set; }
         public string Destino { get; set; }
         public DateTime Departure { get; set; }
